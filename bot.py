@@ -4,8 +4,8 @@ from random import randint
 
 
 
-id= 12149457
-hash = "575877fb0c8586be1e91b618d44f07c5"
+api_id= 12149457
+api_hash = "575877fb0c8586be1e91b618d44f07c5"
 
 print("Starting Deployment..!")
 
