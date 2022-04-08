@@ -1,14 +1,17 @@
 from time import sleep
 from telethon import TelegramClient, events
+from random import randint
 
 
 
-api_id = 14295855
-api_hash = 'd7c97d558577a8633485c557a41174ef'
-to = [-1001771051573]
-From = -1001718455782
+id= 12149457
+hash = "575877fb0c8586be1e91b618d44f07c5"
 
-client = TelegramClient('session_name1', api_id, api_hash)
+print("Starting Deployment..!")
+
+
+
+client = TelegramClient('session_name11', api_id, api_hash)
 
 
 @client.on(events.NewMessage(pattern=r'\.for'))
@@ -56,5 +59,7 @@ async def runbollyhandler(event):
     await client.send_message("@m3nd7", "All message sent")
 
 
+          
+print("Bot has been deployed.!")
 client.start()
 client.run_until_disconnected()
