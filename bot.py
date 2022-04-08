@@ -11,7 +11,7 @@ print("Starting Deployment..!")
 
 
 
-client = TelegramClient('session_name11', api_id, api_hash)
+client = TelegramClient('main_session', api_id, api_hash)
 
 
 @client.on(events.NewMessage(pattern=r'\.for'))
