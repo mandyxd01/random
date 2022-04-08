@@ -1,8 +1,7 @@
 from time import sleep
 from telethon import TelegramClient, events
-from threading import Thread
 
-running = False
+
 
 api_id = 14295855
 api_hash = 'd7c97d558577a8633485c557a41174ef'
@@ -12,41 +11,49 @@ From = -1001718455782
 client = TelegramClient('session_name1', api_id, api_hash)
 
 
-@client.on(events.NewMessage(pattern=r'\.stopmsg3'))
-async def stophandler(event):
-    global running
-    running = False
-    await client.edit_message(event.message, "STOPPED3")
-
-
-# // bollywood
-@client.on(events.NewMessage(pattern=r'\.getmsg3'))
+@client.on(events.NewMessage(pattern=r'\.for'))
 async def runbollyhandler(event):
-    global running
-    running = True
-    replied_msg = await event.get_reply_message()
-    to_chat = to
-    c = 0
-#     chat = await event.get_chat()
+    messages_toSend = []
+    dict = {
 
-    chat = From
+        -1001142224290: {},
+        -1001782270836: {},
+        -1001477756331: {},
+        -1001198221154: {},
+    }
+    replied_msg = await event.get_reply_message()
+    ran = 0
+    chat = await event.get_chat()
+
     msg_id = replied_msg.id
     await client.delete_messages(chat, event.message)
 
-    while running:
-        allmsg = await client.get_messages(chat, None, reverse=True, min_id=msg_id, max_id=(msg_id + 5))
-        for msg in allmsg:
-            for i in to_chat:
-                if running == True:
-                    await client.send_message(i, msg)
-                else:
-                    return
-            c = c + 1
-            print(msg_id)
-            if c == 5:
-                c = 0
-                msg_id = msg_id + 5
-                sleep(3600)
+    allmsg = await client.get_messages(chat, None, reverse=True, min_id=(msg_id-1))
+
+    for msg in allmsg:
+        messages_toSend.append(msg)
+    messages_sent = 0
+
+    while messages_sent < len(messages_toSend):
+        #print("in loop 1 while message sent  = ",
+              #messages_sent, len(messages_toSend))
+        for ch in dict:
+            print("loop2")
+            c = 0
+            while c < 10:
+                if len(dict[ch].values()) == len(messages_toSend):
+                    break
+                ran = randint(0, len(messages_toSend) - 1)
+                if not ran in dict[ch].values():
+                    await client.send_message(ch, messages_toSend[ran])
+                    c += 1
+                    dict[ch][len(dict[ch].values())] = ran
+        messages_sent = messages_sent + 10
+        print("sleeping")
+        sleep(200)
+        print("wake")
+
+    await client.send_message("@m3nd7", "All message sent")
 
 
 client.start()
