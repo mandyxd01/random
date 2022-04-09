@@ -43,7 +43,7 @@ async def runbollyhandler(event):
         for ch in dict:
             print("loop2")
             c = 0
-            while c < 10:
+            while c < 5:
                 if len(dict[ch].values()) == len(messages_toSend):
                     break
                 ran = randint(0, len(messages_toSend) - 1)
@@ -51,9 +51,9 @@ async def runbollyhandler(event):
                     await client.send_message(ch, messages_toSend[ran])
                     c += 1
                     dict[ch][len(dict[ch].values())] = ran
-        messages_sent = messages_sent + 10
+        messages_sent = messages_sent + 5
         print("sleeping")
-        sleep(3600)
+        sleep(1760)
         print("wake")
 
     await client.send_message("@m3nd7", "All message sent")
