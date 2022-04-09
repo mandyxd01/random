@@ -53,7 +53,7 @@ async def runbollyhandler(event):
                     dict[ch][len(dict[ch].values())] = ran
         messages_sent = messages_sent + 10
         print("sleeping")
-        sleep(200)
+        sleep(3600)
         print("wake")
 
     await client.send_message("@m3nd7", "All message sent")
