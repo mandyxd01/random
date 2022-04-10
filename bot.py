@@ -48,9 +48,11 @@ async def runbollyhandler(event):
                     break
                 ran = randint(0, len(messages_toSend) - 1)
                 if not ran in dict[ch].values():
-                    await client.send_message(ch, messages_toSend[ran])
-                    c += 1
-                    dict[ch][len(dict[ch].values())] = ran
+                    try:
+                        await client.send_message(ch, messages_toSend[ran])
+                        c += 1
+                        dict[ch][len(dict[ch].values())] = ran
+                    except Exception as e: print(e)
         messages_sent = messages_sent + 5
         print("sleeping")
         sleep(1760)
